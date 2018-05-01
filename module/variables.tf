@@ -10,7 +10,7 @@ variable "location" {
   default = "UK South"
 }
 
-variable "subnet_id" {}
+variable "subnet" {}
 variable "avset_id" {}
 
 variable "username" {
@@ -53,3 +53,7 @@ variable "delete_os_disk_on_termination" {
 variable "delete_data_disks_on_termination" {
   default = "true"
 }
+
+variable "vnet" {}
+variable "resource_group_name" {}
+variable "port" {}

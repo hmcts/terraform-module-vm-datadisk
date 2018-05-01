@@ -21,7 +21,7 @@ resource "azurerm_network_interface" "reform-nonprod" {
 
   ip_configuration {
     name                          = "${element(data.template_file.server_name.*.rendered, count.index)}-NIC"
-    subnet_id                     = "${var.subnet_id}"
+    subnet_id                     = "/subscriptions/${var.azure_subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Network/virtualNetworks/${var.vnet}/subnets/${var.subnet}"
     private_ip_address_allocation = "dynamic"
   }
 }
@@ -114,7 +114,7 @@ resource "azurerm_virtual_machine_extension" "script" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "iptables -t nat -A PREROUTING -p tcp --dport 444 -j REDIRECT --to-ports 22; iptables-save > /etc/sysconfig/iptables"
+        "commandToExecute": "iptables -t nat -A PREROUTING -p tcp --dport ${var.port} -j REDIRECT --to-ports 22; iptables-save > /etc/sysconfig/iptables"
     }
 SETTINGS
 }
