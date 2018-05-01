@@ -13,9 +13,7 @@ variable "location" {
 variable "subnet" {}
 variable "avset_id" {}
 
-variable "username" {
-  default = "dojenkins"
-}
+variable "admin_username" {}
 
 variable "ssh_key" {}
 variable "storage_account" {}
@@ -53,7 +51,7 @@ variable "delete_os_disk_on_termination" {
 variable "delete_data_disks_on_termination" {
   default = "true"
 }
-
+variable "azure_subscription_id" {}
 variable "vnet" {}
 variable "resource_group_name" {}
 variable "port" {}
